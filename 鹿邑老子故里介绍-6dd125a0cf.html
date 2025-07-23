@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>老子故里·道家之源 - 鹿邑县</title>
+    <script src="https://cdn.tailwindcss.com/3.3.3"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #F5F5DC;
+            color: #333;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" opacity="0.05"><path d="M100 50a50 50 0 1 1 0 100 50 50 0 0 1 0-100zm0 20a30 30 0 1 0 0 60 30 30 0 0 0 0-60z" fill="%234CAF50"/></svg>');
+        }
+        
+        .glassmorphism {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-item {
+            position: relative;
+        }
+        
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #4CAF50;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-item:hover::after {
+            width: 100%;
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .quote-box {
+            position: relative;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            background-color: rgba(76, 175, 80, 0.1);
+            border-left: 4px solid #4CAF50;
+        }
+        
+        .quote-box::before {
+            content: '"';
+            position: absolute;
+            top: 0;
+            left: 10px;
+            font-size: 4rem;
+            color: rgba(76, 175, 80, 0.2);
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .mobile-menu {
+            transform: scaleY(0);
+            transform-origin: top;
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        
+        .mobile-menu.active {
+            transform: scaleY(1);
+            opacity: 1;
+        }
+        
+        .image-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .image-modal.active {
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="sticky top-0 z-50 bg-white/90 shadow-sm backdrop-blur-md">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="text-xl font-bold text-[#4CAF50]">
+                <i class="fas fa-yin-yang mr-2"></i>老子故里
+            </div>
+            
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="nav-item text-gray-700 hover:text-[#4CAF50]">首页</a>
+                <a href="#history" class="nav-item text-gray-700 hover:text-[#4CAF50]">历史背景</a>
+                <a href="#attractions" class="nav-item text-gray-700 hover:text-[#4CAF50]">主要景点</a>
+                <a href="#culture" class="nav-item text-gray-700 hover:text-[#4CAF50]">文化意义</a>
+                <a href="#travel" class="nav-item text-gray-700 hover:text-[#4CAF50]">旅游指南</a>
+                <a href="#events" class="nav-item text-gray-700 hover:text-[#4CAF50]">文化活动</a>
+            </div>
+            
+            <button id="mobileMenuButton" class="md:hidden text-gray-700">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+        
+        <!-- 移动端菜单 -->
+        <div id="mobileMenu" class="mobile-menu md:hidden absolute w-full bg-white shadow-lg">
+            <div class="container mx-auto px-4 py-2">
+                <a href="#home" class="block py-2 border-b border-gray-100 text-gray-700 hover:text-[#4CAF50]">
+                    <i class="fas fa-home mr-2"></i>首页
+                </a>
+                <a href="#history" class="block py-2 border-b border-gray-100 text-gray-700 hover:text-[#4CAF50]">
+                    <i class="fas fa-landmark mr-2"></i>历史背景
+                </a>
+                <a href="#attractions" class="block py-2 border-b border-gray-100 text-gray-700 hover:text-[#4CAF50]">
+                    <i class="fas fa-map-marked-alt mr-2"></i>主要景点
+                </a>
+                <a href="#culture" class="block py-2 border-b border-gray-100 text-gray-700 hover:text-[#4CAF50]">
+                    <i class="fas fa-book-open mr-2"></i>文化意义
+                </a>
+                <a href="#travel" class="block py-2 border-b border-gray-100 text-gray-700 hover:text-[#4CAF50]">
+                    <i class="fas fa-map-signs mr-2"></i>旅游指南
+                </a>
+                <a href="#events" class="block py-2 text-gray-700 hover:text-[#4CAF50]">
+                    <i class="fas fa-calendar-alt mr-2"></i>文化活动
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 首页横幅 -->
+    <section id="home" class="relative h-[500px] overflow-hidden">
+        <img src="https://s.coze.cn/image/fCR7Hrsu0h4/" alt="老子雕像" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-black/30 flex items-center justify-center">
+            <div class="text-center px-4">
+                <h1 class="text-4xl md:text-6xl font-bold text-white mb-4">老子故里·道家之源</h1>
+                <p class="text-xl text-white/90 max-w-2xl mx-auto">探寻道家文化发源地，感受《道德经》五千言智慧</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 历史背景 -->
+    <section id="history" class="py-16 bg-[#F5F5DC]">
+        <div class="container mx-auto px-4">
+            <div class="glassmorphism p-8 mb-12">
+                <h2 class="text-3xl font-bold mb-6 text-[#4CAF50] flex items-center">
+                    <i class="fas fa-landmark mr-3"></i>历史背景
+                </h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <p class="mb-4">鹿邑县老子故里旅游区是国家AAAA级旅游景区，位于河南省周口市鹿邑县，是以古代伟大思想家、世界著名历史文化名人老子的诞生与成长及后人祭祀活动所遗留文物古迹为主体，配以周围历史遗迹人文景观，并与自然景观相结合的综合旅游区。</p>
+                        
+                        <p class="mb-4">老子故里历史悠久，早在东汉桓帝延熹八年(165年)就开始在此建庙祀老子。唐高祖李渊追认老子为始祖，以老子庙为太庙，大兴土木；唐高宗李治追封老子为"太上玄元皇帝"；唐玄宗李隆基亲为《道德经》作注，并御书全文镌立《道德经注碑》。</p>
+                    </div>
+                    <div>
+                        <img src="https://s.coze.cn/image/NcC7oGsq7Dc/" alt="鹿邑县老子故里全景" class="w-full h-auto rounded-lg shadow-md">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 主要景点 -->
+    <section id="attractions" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-12 text-center text-[#4CAF50]">
+                <i class="fas fa-map-marked-alt mr-3"></i>主要景点
+            </h2>
+            
+            <!-- 太清宫 -->
+            <div class="glassmorphism p-8 mb-12 card-hover">
+                <h3 class="text-2xl font-bold mb-4 text-[#8B4513]">太清宫</h3>
+                <p class="mb-6">太清宫是老子的诞生地，位于鹿邑县城东5公里处，是道教文化发源地，道教祖庭和李氏之根，属国家重点文物保护单位。</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-semibold mb-2 text-[#4CAF50]">主要景点：</h4>
+                        <ul class="space-y-2">
+                            <li><i class="fas fa-torii-gate mr-2 text-[#8B4513]"></i><strong>太极殿</strong>：太清宫主体建筑，建于民国二年，融合汉、唐、宋、明、清不同时期的建筑材料，殿内供奉老子塑像</li>
+                            <li><i class="fas fa-water mr-2 text-[#8B4513]"></i><strong>九龙井</strong>：传为老子出生时九龙取水浴体处</li>
+                            <li><i class="fas fa-monument mr-2 text-[#8B4513]"></i><strong>先天太后之赞碑</strong>：宋真宗御制御书并篆额的"三御碑"，高8米，重50吨，被誉为"河南第一碑"</li>
+                            <li><i class="fas fa-archway mr-2 text-[#8B4513]"></i><strong>铁柱</strong>：高八尺，围尺有八寸，唐时旧物，纪念老子曾任周"柱下史"一职</li>
+                            <li><i class="fas fa-tree mr-2 text-[#8B4513]"></i><strong>阴阳柏</strong>：两株千年古柏，一株为阴，一株为阳，相传为老子亲手所植</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <img src="https://s.coze.cn/image/Uk_hjaOxqio/" alt="太清宫" class="w-full h-auto rounded-lg shadow-md cursor-pointer" onclick="openImageModal(this.src, '太清宫')">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 明道宫 -->
+            <div class="glassmorphism p-8 card-hover">
+                <h3 class="text-2xl font-bold mb-4 text-[#8B4513]">明道宫</h3>
+                <p class="mb-6">明道宫位于鹿邑县城东北端，是老子聚徒讲学、传播天下大道之地，距老子出生地约10里。宫门上方的"明道宫"牌匾为宋真宗赵恒亲笔所题，意为"真理显现之地"。</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-semibold mb-2 text-[#4CAF50]">主要景点：</h4>
+                        <ul class="space-y-2">
+                            <li><i class="fas fa-mountain mr-2 text-[#8B4513]"></i><strong>老君台</strong>：又名升仙台，传为老子修道成仙飞升处，台高13米，顶部面积765平方米，有33级青石台阶，象征老子升33层青天之说</li>
+                            <li><i class="fas fa-yin-yang mr-2 text-[#8B4513]"></i><strong>八卦台</strong>：以青石为基、汉白玉为栏，围栏上刻有"八仙过海"法器图案，栏杆三层设计代表"道生一，一生二，二生三，三生万物"</li>
+                            <li><i class="fas fa-home mr-2 text-[#8B4513]"></i><strong>迎禧殿</strong>：曾是宋真宗驻跸之所，鹿邑百姓称之为"东皇城"</li>
+                            <li><i class="fas fa-monument mr-2 text-[#8B4513]"></i><strong>玄元殿</strong>：明道宫建筑群中最大的宫殿，内有高7.6米、重8.5吨的老子青铜坐像</li>
+                            <li><i class="fas fa-gate mr-2 text-[#8B4513]"></i><strong>众妙之门牌坊</strong>：取自《道德经》"玄之又玄，众妙之门"</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <img src="https://s.coze.cn/image/56ZBVZwbStA/" alt="明道宫" class="w-full h-auto rounded-lg shadow-md cursor-pointer" onclick="openImageModal(this.src, '明道宫')">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 文化意义 -->
+    <section id="culture" class="py-16 bg-[#F5F5DC]">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-12 text-center text-[#4CAF50]">
+                <i class="fas fa-book-open mr-3"></i>文化意义
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- 老子思想与《道德经》 -->
+                <div class="glassmorphism p-6 card-hover">
+                    <div class="w-16 h-16 rounded-full bg-[#4CAF50]/10 flex items-center justify-center text-[#4CAF50] text-2xl mb-4 mx-auto">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-center text-[#8B4513]">老子思想与《道德经》</h3>
+                    <p class="text-gray-700">老子所著《道德经》仅五千言，却博大精深，是中国文化宝藏，也是世界上除《圣经》外发行量最大的著作。其核心思想包括"道法自然"、"无为而治"、"上善若水"等，对中国乃至世界哲学、文化、宗教产生了深远影响。</p>
+                    
+                    <div class="quote-box mt-4">
+                        <p class="text-gray-700 italic">"道可道，非常道。名可名，非常名。"</p>
+                        <p class="text-right text-sm text-gray-600">——《道德经》第一章</p>
+                    </div>
+                </div>
+                
+                <!-- 道教祖庭 -->
+                <div class="glassmorphism p-6 card-hover">
+                    <div class="w-16 h-16 rounded-full bg-[#4CAF50]/10 flex items-center justify-center text-[#4CAF50] text-2xl mb-4 mx-auto">
+                        <i class="fas fa-temple"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-center text-[#8B4513]">道教祖庭</h3>
+                    <p class="text-gray-700">鹿邑老子故里是道教的发源地，自唐代起被列为皇家家庙，历代道教信徒皆来此朝拜，成为海内外道教徒心中的圣地。</p>
+                    
+                    <div class="quote-box mt-4">
+                        <p class="text-gray-700 italic">"人法地，地法天，天法道，道法自然。"</p>
+                        <p class="text-right text-sm text-gray-600">——《道德经》第二十五章</p>
+                    </div>
+                </div>
+                
+                <!-- 李姓之根 -->
+                <div class="glassmorphism p-6 card-hover">
+                    <div class="w-16 h-16 rounded-full bg-[#4CAF50]/10 flex items-center justify-center text-[#4CAF50] text-2xl mb-4 mx-auto">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-center text-[#8B4513]">李姓之根</h3>
+                    <p class="text-gray-700">鹿邑是李姓的发源地，自唐初老子祠立为李氏家族的家庙后，历代李氏宗亲来鹿邑寻根祭祀络绎不绝，成为国内及世界李氏华人的寻根祭祀圣地。</p>
+                    
+                    <div class="quote-box mt-4">
+                        <p class="text-gray-700 italic">"天下有始，以为天下母。既得其母，以知其子；既知其子，复守其母，没身不殆。"</p>
+                        <p class="text-right text-sm text-gray-600">——《道德经》第五十二章</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 国家级非遗"老子祭典" -->
+            <div class="glassmorphism p-8 mt-12">
+                <h3 class="text-2xl font-bold mb-4 text-[#8B4513]">国家级非遗"老子祭典"</h3>
+                <p class="mb-6">2021年，鹿邑"老子祭典"入选第五批国家级非物质文化遗产代表性项目名录。祭典于每年农历二月十五老子诞辰日举行，包括乐、舞、歌、礼四种形式，仪程有鸣炮奏乐、敬献花篮、上香奠酒、恭读祭文、行施拜礼、歌舞献祭等。</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <img src="https://s.coze.cn/image/Pk0NWQBZBTM/" alt="老子祭典" class="w-full h-auto rounded-lg shadow-md cursor-pointer" onclick="openImageModal(this.src, '老子祭典')">
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-3 text-[#4CAF50]">祭典特色：</h4>
+                        <ul class="space-y-2">
+                            <li><i class="fas fa-music mr-2 text-[#8B4513]"></i>传统道教音乐演奏</li>
+                            <li><i class="fas fa-drum mr-2 text-[#8B4513]"></i>古代祭祀舞蹈表演</li>
+                            <li><i class="fas fa-scroll mr-2 text-[#8B4513]"></i>《道德经》诵读仪式</li>
+                            <li><i class="fas fa-fire-alt mr-2 text-[#8B4513]"></i>传统上香仪式</li>
+                            <li><i class="fas fa-people-arrows mr-2 text-[#8B4513]"></i>李氏宗亲祭祖活动</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 旅游指南 -->
+    <section id="travel" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-12 text-center text-[#4CAF50]">
+                <i class="fas fa-map-signs mr-3"></i>旅游指南
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- 开放时间 -->
+                <div class="glassmorphism p-6 card-hover">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-[#4CAF50]/10 flex items-center justify-center text-[#4CAF50] text-xl mr-4">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-[#8B4513]">开放时间</h3>
+                    </div>
+                    <ul class="space-y-2">
+                        <li><i class="fas fa-calendar-day mr-2 text-[#8B4513]"></i>全年 08:00-18:00开放</li>
+                        <li><i class="fas fa-leaf mr-2 text-[#8B4513]"></i>建议春秋两季（3-5月、9-11月）前往，天气宜人，避开旅游高峰</li>
+                    </ul>
+                </div>
+                
+                <!-- 门票信息 -->
+                <div class="glassmorphism p-6 card-hover">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-[#4CAF50]/10 flex items-center justify-center text-[#4CAF50] text-xl mr-4">
+                            <i class="fas fa-ticket-alt"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-[#8B4513]">门票信息</h3>
+                    </div>
+                    <ul class="space-y-2">
+                        <li><i class="fas fa-landmark mr-2 text-[#8B4513]"></i>太清宫门票80元</li>
+                        <li><i class="fas fa-temple mr-2 text-[#8B4513]"></i>明道宫门票60元</li>
+                        <li><i class="fas fa-university mr-2 text-[#8B4513]"></i>老子文化博物馆免费（需预约）</li>
+                    </ul>
+                    
+                    <div class="mt-4">
+                        <h4 class="font-semibold mb-2 text-[#4CAF50]">优惠政策：</h4>
+                        <ul class="space-y-1 text-sm">
+                            <li><i class="fas fa-user-check mr-2 text-[#8B4513]"></i>60岁以上老人、1.4米以下儿童、现役军人、残疾人等凭有效证件免票</li>
+                            <li><i class="fas fa-graduation-cap mr-2 text-[#8B4513]"></i>全日制在读学生、18周岁以下未成年人、教师凭证半价优惠</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- 交通指南 -->
+                <div class="glassmorphism p-6 card-hover">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-[#4CAF50]/10 flex items-center justify-center text-[#4CAF50] text-xl mr-4">
+                            <i class="fas fa-subway"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-[#8B4513]">交通指南</h3>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <h4 class="font-semibold mb-2 text-[#4CAF50]">飞机：</h4>
+                        <p class="text-sm"><i class="fas fa-plane mr-2 text-[#8B4513]"></i>最近的是郑州新郑国际机场，落地后转乘高铁至周口东站（约1小时），再换乘大巴或出租车前往鹿邑（车程约1小时）</p>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <h4 class="font-semibold mb-2 text-[#4CAF50]">高铁：</h4>
+                        <p class="text-sm"><i class="fas fa-train mr-2 text-[#8B4513]"></i>可在周口东站或亳州南站下车，亳州南站距离鹿邑仅30公里，出站后打车或乘坐城际公交直达</p>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-semibold mb-2 text-[#4CAF50]">自驾：</h4>
+                        <ul class="space-y-1 text-sm">
+                            <li><i class="fas fa-car mr-2 text-[#8B4513]"></i>从郑州方向出发：连霍高速转商周高速，在鹿邑出口下</li>
+                            <li><i class="fas fa-car mr-2 text-[#8B4513]"></i>合肥方向：宁洛高速转永登高速抵达</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- 美食推荐 -->
+                <div class="glassmorphism p-6 card-hover">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-[#4CAF50]/10 flex items-center justify-center text-[#4CAF50] text-xl mr-4">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-[#8B4513]">美食推荐</h3>
+                    </div>
+                    <ul class="space-y-2">
+                        <li><i class="fas fa-bowl-food mr-2 text-[#8B4513]"></i><strong>鹿邑妈糊</strong>：黄豆、小米磨浆发酵制成，搭配咸菜丝，当地特色早餐</li>
+                        <li><i class="fas fa-fish mr-2 text-[#8B4513]"></i><strong>焦鱼汤</strong>：小鲫鱼油炸后炖煮，加入荆芥提味，夜市必备美食</li>
+                        <li><i class="fas fa-drumstick-bite mr-2 text-[#8B4513]"></i><strong>孔集烧鸡</strong>：选用散养土鸡，以药膳卤制，肉质鲜嫩</li>
+                        <li><i class="fas fa-yin-yang mr-2 text-[#8B4513]"></i><strong>道家养生宴</strong>："八卦豆腐"、"太极羹"等创意养生菜品</li>
+                    </ul>
+                </div>
+                
+                <!-- 住宿建议 -->
+                <div class="glassmorphism p-6 card-hover">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-[#4CAF50]/10 flex items-center justify-center text-[#4CAF50] text-xl mr-4">
+                            <i class="fas fa-hotel"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-[#8B4513]">住宿建议</h3>
+                    </div>
+                    <ul class="space-y-2">
+                        <li><i class="fas fa-star mr-2 text-[#8B4513]"></i><strong>高端</strong>：鹿邑建业君邻酒店，靠近明道宫，设道家主题SPA</li>
+                        <li><i class="fas fa-coins mr-2 text-[#8B4513]"></i><strong>性价比</strong>：尚客优精选酒店（陈抟公园店），人均每晚150元左右</li>
+                        <li><i class="fas fa-home mr-2 text-[#8B4513]"></i><strong>特色民宿</strong>："道源小院"，位于太清宫旁，传统四合院，可体验抄经、打坐等活动</li>
+                    </ul>
+                </div>
+                
+                <!-- 庙会期间特殊政策 -->
+                <div class="glassmorphism p-6 card-hover">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-[#4CAF50]/10 flex items-center justify-center text-[#4CAF50] text-xl mr-4">
+                            <i class="fas fa-gifts"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-[#8B4513]">庙会期间特殊政策</h3>
+                    </div>
+                    <p class="text-sm mb-2">农历二月十五至三月十五老子庙会期间：</p>
+                    <ul class="space-y-1 text-sm">
+                        <li><i class="fas fa-user-tag mr-2 text-[#8B4513]"></i>全球李姓游客免门票</li>
+                        <li><i class="fas fa-tshirt mr-2 text-[#8B4513]"></i>身着符合历史形制汉服并带完整妆容的游客免门票</li>
+                        <li><i class="fas fa-book-reader mr-2 text-[#8B4513]"></i>现场背诵《道德经》任意5章的游客免门票</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 文化活动 -->
+    <section id="events" class="py-16 bg-[#F5F5DC]">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-12 text-center text-[#4CAF50]">
+                <i class="fas fa-calendar-alt mr-3"></i>文化活动与节庆
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- 老子庙会 -->
+                <div class="glassmorphism p-6 card-hover">
+                    <div class="w-16 h-16 rounded-full bg-[#4CAF50]/10 flex items-center justify-center text-[#4CAF50] text-2xl mb-4 mx-auto">
+                        <i class="fas fa-gifts"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-center text-[#8B4513]">老子庙会</h3>
+                    <p class="text-gray-700">老子庙会起源于汉代，兴盛于唐，每年农历二月十五至三月十五举行，是融民间艺术、宗教信仰、物资交流、文化娱乐为一体的汉族民俗文化盛会。</p>
+                    
+                    <div class="mt-4">
+                        <img src="" alt="老子庙会" class="w-full h-auto rounded-lg shadow-md cursor-pointer" onclick="openImageModal(this.src, '老子庙会')">
+                    </div>
+                </div>
+                
+                <!-- 非遗展演 -->
+                <div class="glassmorphism p-6 card-hover">
+                    <div class="w-16 h-16 rounded-full bg-[#4CAF50]/10 flex items-center justify-center text-[#4CAF50] text-2xl mb-4 mx-auto">
+                        <i class="fas fa-theater-masks"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-center text-[#8B4513]">非遗展演</h3>
+                    <p class="text-gray-700">包括传统戏剧、变脸、杂技、民乐等表演，近年来还举办"国潮汉服文化节"、"元宵花灯节"等活动。</p>
+                    
+                    <div class="mt-4">
+                        <img src="https://s.coze.cn/image/QM3Pdw9sq4o/" alt="非遗展演" class="w-full h-auto rounded-lg shadow-md cursor-pointer" onclick="openImageModal(this.src, '非遗展演')">
+                    </div>
+                </div>
+                
+                <!-- 《道德经》诵读仪式 -->
+                <div class="glassmorphism p-6 card-hover">
+                    <div class="w-16 h-16 rounded-full bg-[#4CAF50]/10 flex items-center justify-center text-[#4CAF50] text-2xl mb-4 mx-auto">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-center text-[#8B4513]">《道德经》诵读仪式</h3>
+                    <p class="text-gray-700">明道宫每日9:00和15:00有《道德经》诵读仪式，游客可参与其中，沉浸式感受道家文化。</p>
+                    
+                    <div class="mt-4">
+                        <img src="" alt="《道德经》诵读仪式" class="w-full h-auto rounded-lg shadow-md cursor-pointer" onclick="openImageModal(this.src, '《道德经》诵读仪式')">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 资源优势 -->
+            <div class="glassmorphism p-8 mt-12">
+                <h3 class="text-2xl font-bold mb-6 text-[#8B4513]">老子故里资源优势</h3>
+                <p class="mb-6">老子故里旅游区的资源优势可用"专、真、根、全、远、高、名"七个字概括：</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="bg-[#4CAF50]/10 p-4 rounded-lg">
+                        <h4 class="font-bold mb-2 text-[#4CAF50]">专</h4>
+                        <p class="text-sm">以老子的生平事迹、文物古迹、传说影响等构成的专项旅游区</p>
+                    </div>
+                    <div class="bg-[#4CAF50]/10 p-4 rounded-lg">
+                        <h4 class="font-bold mb-2 text-[#4CAF50]">真</h4>
+                        <p class="text-sm">展示老子作为凡人的一生，有出生、研习、教授等正常活动</p>
+                    </div>
+                    <div class="bg-[#4CAF50]/10 p-4 rounded-lg">
+                        <h4 class="font-bold mb-2 text-[#4CAF50]">根</h4>
+                        <p class="text-sm">道教之祖籍地，李姓之根源地</p>
+                    </div>
+                    <div class="bg-[#4CAF50]/10 p-4 rounded-lg">
+                        <h4 class="font-bold mb-2 text-[#4CAF50]">全</h4>
+                        <p class="text-sm">文物荟萃，有遗址、墓葬、建筑遗迹、碑刻、古树等</p>
+                    </div>
+                    <div class="bg-[#4CAF50]/10 p-4 rounded-lg">
+                        <h4 class="font-bold mb-2 text-[#4CAF50]">远</h4>
+                        <p class="text-sm">有龙山文化时期的隐山遗址、商周时期的贵族墓葬等古文化遗址</p>
+                    </div>
+                    <div class="bg-[#4CAF50]/10 p-4 rounded-lg">
+                        <h4 class="font-bold mb-2 text-[#4CAF50]">高</h4>
+                        <p class="text-sm">历代帝王将相、文人墨客前来祭拜或撰赞文</p>
+                    </div>
+                    <div class="bg-[#4CAF50]/10 p-4 rounded-lg">
+                        <h4 class="font-bold mb-2 text-[#4CAF50]">名</h4>
+                        <p class="text-sm">除老子外，还有刘邦、项羽的垓下古战场、陈抟故园等名胜</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-[#8B4513] text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">关于老子故里</h3>
+                    <p class="mb-4">鹿邑县老子故里旅游区是国家AAAA级旅游景区，是以古代伟大思想家、世界著名历史文化名人老子的诞生与成长及后人祭祀活动所遗留文物古迹为主体，配以周围历史遗迹人文景观，并与自然景观相结合的综合旅游区。</p>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-4">联系我们</h3>
+                    <ul class="space-y-2">
+                        <li><i class="fas fa-map-marker-alt mr-2"></i>河南省周口市鹿邑县</li>
+                        <li><i class="fas fa-phone mr-2"></i>0394-XXXXXXX</li>
+                        <li><i class="fas fa-envelope mr-2"></i>info@laoziguli.com</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-4">快速链接</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="hover:text-[#4CAF50] transition-colors"><i class="fas fa-home mr-2"></i>首页</a></li>
+                        <li><a href="#history" class="hover:text-[#4CAF50] transition-colors"><i class="fas fa-landmark mr-2"></i>历史背景</a></li>
+                        <li><a href="#attractions" class="hover:text-[#4CAF50] transition-colors"><i class="fas fa-map-marked-alt mr-2"></i>主要景点</a></li>
+                        <li><a href="#travel" class="hover:text-[#4CAF50] transition-colors"><i class="fas fa-map-signs mr-2"></i>旅游指南</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-[#4CAF50]/30 mt-8 pt-8 text-center">
+                <p class="mb-2">© 2024 鹿邑县老子故里旅游区 版权所有</p>
+                <p class="text-sm text-white/80">页面内容均由 AI 生成，仅供参考</p>
+                <p class="text-sm mt-4">
+                    <a href="https://space.coze.cn" class="text-white hover:text-[#4CAF50] transition-colors">created by coze space</a>
+                </p>
+                <button id="backToTop" class="mt-4 px-4 py-2 bg-[#4CAF50] rounded-full hover:bg-[#3d8b40] transition-colors">
+                    <i class="fas fa-arrow-up mr-2"></i>回到顶部
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 图片模态框 -->
+    <div id="imageModal" class="image-modal">
+        <div class="relative max-w-4xl w-full">
+            <button id="closeModal" class="absolute top-4 right-4 text-white text-3xl z-10">
+                <i class="fas fa-times"></i>
+            </button>
+            <img id="modalImage" src="" alt="" class="max-h-[90vh] mx-auto">
+            <p id="modalCaption" class="text-white text-center mt-2"></p>
+        </div>
+    </div>
+
+    <script>
+        // 移动端菜单切换
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileMenuButton.addEventListener('click', function() {
+            mobileMenu.classList.toggle('active');
+            
+            // 切换图标
+            const icon = this.querySelector('i');
+            if (mobileMenu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+        
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // 如果是移动端菜单，点击后关闭菜单
+                    if (mobileMenu.classList.contains('active')) {
+                        mobileMenu.classList.remove('active');
+                        const icon = mobileMenuButton.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                }
+            });
+        });
+        
+        // 回到顶部按钮
+        const backToTopButton = document.getElementById('backToTop');
+        backToTopButton.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // 图片模态框功能
+        function openImageModal(src, caption) {
+            const modal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            const modalCaption = document.getElementById('modalCaption');
+            
+            modalImage.src = src;
+            modalCaption.textContent = caption;
+            modal.classList.add('active');
+        }
+        
+        document.getElementById('closeModal').addEventListener('click', function() {
+            document.getElementById('imageModal').classList.remove('active');
+        });
+        
+        // 点击模态框外部关闭
+        document.getElementById('imageModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.remove('active');
+            }
+        });
+        
+        // 随机显示道德经名句
+        const quotes = [
+            {text: "道可道，非常道。名可名，非常名。", chapter: "第一章"},
+            {text: "天下皆知美之为美，斯恶已。皆知善之为善，斯不善已。", chapter: "第二章"},
+            {text: "上善若水。水善利万物而不争，处众人之所恶，故几于道。", chapter: "第八章"},
+            {text: "持而盈之，不如其已；揣而锐之，不可长保。", chapter: "第九章"},
+            {text: "三十辐共一毂，当其无，有车之用。", chapter: "第十一章"},
+            {text: "人法地，地法天，天法道，道法自然。", chapter: "第二十五章"},
+            {text: "知人者智，自知者明。胜人者有力，自胜者强。", chapter: "第三十三章"},
+            {text: "大方无隅，大器晚成，大音希声，大象无形。", chapter: "第四十一章"},
+            {text: "祸兮福之所倚，福兮祸之所伏。", chapter: "第五十八章"},
+            {text: "千里之行，始于足下。", chapter: "第六十四章"}
+        ];
+        
+        // 滚动时随机显示名句
+        let lastScroll = 0;
+        window.addEventListener('scroll', function() {
+            const currentScroll = window.scrollY;
+            
+            // 每滚动300px随机显示一个名句
+            if (Math.abs(currentScroll - lastScroll) > 300) {
+                lastScroll = currentScroll;
+                
+                const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+                const quoteBoxes = document.querySelectorAll('.quote-box');
+                
+                if (quoteBoxes.length > 0) {
+                    const randomBox = quoteBoxes[Math.floor(Math.random() * quoteBoxes.length)];
+                    randomBox.querySelector('p').textContent = `"${randomQuote.text}"`;
+                    randomBox.querySelector('p + p').textContent = `——《道德经》${randomQuote.chapter}`;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
